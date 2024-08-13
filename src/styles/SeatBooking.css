@@ -1,0 +1,121 @@
+.seat-booking-page {
+  padding: 20px;
+  background-color: #0b0c10;
+  color: #fff;
+}
+
+.banner {
+  background-image: url(../assets/Banner.png);
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f2833;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.movie-details {
+  text-align: center;
+  margin-left: 20px;
+  
+  /* opacity: 0.9 !important;  */
+}
+
+/* .date-slot-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right,#820000,#cc0000,#820000);
+  } */
+.date-slot-info {
+  text-align: center;
+  background-color: #666;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to right, #1f2833, #820000, #1f2833);
+}
+
+.screen {
+  background-image: url(../assets//screenback.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  color: #66fcf1;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.seating-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-label {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff7276;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-right: 35px;
+}
+
+.row-label {
+  width: 30px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.seat img {
+  width: 30px;
+  height: 30px;
+}
+
+.seat-number {
+  font-size: 12px;
+}
+
+.booked img,
+.locked img {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.booking-info {
+  margin-top: 20px;
+  text-align: center;
+  /* background-image: radial-gradient(circle, #994D4D,#871919,#521010); */
+  border-radius: 5px;
+  background-color: #1f2833;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.book-button {
+  background-color: #820000;
+  color: white;
+  border: solid black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.book-button:hover {
+  background-color: red;
+}

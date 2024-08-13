@@ -1,0 +1,200 @@
+.payment-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: black;
+  color: #fff;
+}
+
+.payment-options {
+  flex: 1;
+  margin-right: 20px;
+  background-color: #1f2833;
+  padding: 20px;
+  border-radius: 10px;
+  width: 700px;
+  height: 250px;
+}
+
+.payment-options h2 {
+  text-align: center;
+  color: #ad4545;
+  margin-bottom: 30px;
+}
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-method {
+  margin-bottom: 15px;
+}
+
+.payment-method label {
+  margin-left: 10px;
+  color: #fff;
+}
+
+.order-summary {
+  flex: 1;
+  background-color: #1f2833;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.order-summary h2 {
+  text-align: center;
+  color: #ad4545;
+  margin-bottom: 30px;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-items ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.order-items li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.total-amount {
+  height: 50px;
+  border-radius: 10px;
+
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+  /* padding-top: 1px; */
+}
+
+.payment-card {
+  background-color: #1f2833;
+  padding: 40px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 400px;
+  margin-left: 140px;
+  /* margin-right: auto; */
+}
+
+.payment-card h3 {
+  color: #ad4545;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.payment-card input,
+.payment-card select {
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 10px;
+}
+
+.payment-card button {
+  width: 90%;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 20px;
+  background-color: #820000;
+  color: white;
+  cursor: pointer;
+}
+
+.payment-card input {
+  background-color: #c5c6c7;
+  color: #000;
+}
+
+.payment-card select {
+  background-color: #c5c6c7;
+  color: #000;
+  margin-left: 20px;
+}
+
+.payment-card button:hover {
+  background-color: red;
+}
+
+.wallet-options button {
+  background-color: #c5c6c7;
+  color: #000;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+.wallet-options button:hover {
+  background-color: #820000;
+  color: #fff;
+}
+
+.confirmation-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #1f2833;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.sprinkler-animation {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: url("../assets/tick.gif") no-repeat center center;
+  background-size: cover;
+}
+
+.confirmation-message h2 {
+  color: #ad4545;
+  margin-bottom: 20px;
+  margin-right: 70px;
+}
+
+.confirmation-message button {
+  background-color: #820000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 70px;
+}
+
+.confirmation-message button:hover {
+  background-color: red;
+}

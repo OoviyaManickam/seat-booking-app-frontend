@@ -1,0 +1,220 @@
+.booking-summary-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #0b0c10;
+  color: #fff;
+}
+
+.food-and-beverage {
+  flex: 1;
+  padding: 20px;
+  /* margin-bottom: 60px; */
+  margin-top: -40px;
+}
+
+.food-and-beverage h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ad4545;
+  font-family: "Lucida Sans";
+  text-align: center;
+}
+
+.para {
+  margin-bottom: 20px;
+  color: #c4b9b9;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+}
+
+.categories {
+  margin-left: 10px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.categories button {
+  padding: 10px 20px;
+  background: #1f2833;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.categories button:hover {
+  background: #820000;
+}
+
+.food-items-box {
+  height: 500px;
+  overflow-y: auto;
+  padding: 20px;
+  background: #1f2833;
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.food-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-evenly;
+}
+
+/* .food-item-card {
+    width: calc(33.33% - 20px);
+    padding: 10px;
+    background:#555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-radius: 5px;
+  }
+ 
+  .food-item-card img {
+    width: 70%;
+    height: auto;
+    margin-left: 31px;
+   
+  } */
+.food-item-card {
+  width: calc(33.33% - 20px);
+  padding: 10px;
+  background: #555;
+  box-shadow: 0 2px 5px rgba(106, 77, 77, 0.599);
+  color: #fff;
+  border-radius: 5px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-item-card img {
+  width: 70%;
+  height: 200px;
+  margin-left: 0;
+  object-fit: cover;
+}
+
+.food-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.food-details p {
+  margin: 0;
+}
+
+.food-details button {
+  padding: 5px 10px;
+  background: #820000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 9;
+}
+
+.food-details button:hover {
+  background: red;
+}
+
+.booking-summary {
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 20px;
+  margin-top: 30px;
+}
+
+.booking-summary-card {
+  padding: 40px;
+  background: #1f2833;
+  box-shadow: 0 2px 5px rgba(188, 14, 14, 0.1);
+  color: #fff;
+  border-radius: 5px;
+}
+
+.booking-summary-card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ad4545;
+}
+
+.booking-summary-card p {
+  margin: 5px 0;
+}
+
+.booking-summary-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.booking-summary-card ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.consent-text {
+  font-size: 12px;
+  color: grey;
+  margin-top: 20px;
+}
+
+.caution-symbol {
+  color: red;
+  margin-right: 5px;
+}
+
+.proceed-button {
+  padding: 10px 20px;
+  background: #820000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.proceed-button:hover {
+  background: red;
+}
+
+.remove-button {
+  background: #820000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+.remove-button:hover {
+  background: #ff6347;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(50, 47, 47, 0.8);
+  z-index: 1000;
+}

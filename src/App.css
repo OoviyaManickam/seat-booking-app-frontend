@@ -1,0 +1,47 @@
+body {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+}
+ 
+.App {
+  background-image: url('./assets/SignBg.png'); /* Adjust the path to your image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+}
+ 
+.Home {
+  background-image: url('./assets/HomeBg.png'); /* Adjust the path to your image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+}
+ 
+.Events {
+  background-image: url('./assets/EventsBg.jpg'); /* Adjust the path to your image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+}
+ 
+.Tickets {
+  background-image: url('./assets/BackTicket2.jpg'); /* Adjust the path to your image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+}
+ 
+ 
+.my-custom-card{
+  margin-top: 30px !important;
+}
+ 

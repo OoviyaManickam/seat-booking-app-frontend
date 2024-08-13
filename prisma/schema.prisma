@@ -1,0 +1,40 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model auth {
+  id       String @id @db.VarChar(255)
+  email String @db.VarChar(255)
+  password String @db.VarChar(255)
+  role Int @default(0)
+}
+
+model customer {
+  customer_id String @id @db.VarChar(255)
+  name    String @db.VarChar(255)
+  phone_number   String @db.VarChar(255)
+  created_at DateTime
+  updated_at DateTime
+}
+
+model venue{
+    venue_id String @id @db.VarChar(255)
+    venue_name String @db.VarChar(255)
+    location String @db.VarChar(255)
+    event_id String @db.VarChar(255)
+}
+
+model slot{
+    venue_id String @id @db.VarChar(255)
+    date DateTime @db.Date
+    time DateTime @db.Time
+}
+
+model event{
+    event_id String @id @db.VarChar(255)
+    category_name String @db.VarChar(255)
+    language String @db.VarChar(255)
+    title String @db.VarChar(255)
+    genre String @db.VarChar(255)
+}

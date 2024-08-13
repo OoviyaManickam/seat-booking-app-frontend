@@ -1,0 +1,406 @@
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Box,
+  Card,
+  Typography,
+  Button,
+  TextField,
+  Avatar,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
+import { AccountCircle, Edit, Save } from "@mui/icons-material";
+import Layout from "./Layout";
+import { styled } from "@mui/material/styles";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const MenuButton = styled(Button)({
+  width: "100%",
+  margin: "10px 0",
+  background: "#1f2833",
+  color: "#fff",
+  "&:hover": {
+    background: "#820000",
+  },
+});
+
+const Profile = () => {
+  const [activeSection, setActiveSection] = useState("PersonalDetails");
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [bookings] = useState([
+    {
+      id: 1,
+      movieName: "Movie 1",
+      language: "English",
+      genre: "Action",
+      location: "New York",
+      venueName: "Cinema 1",
+      status: "finished",
+    },
+    {
+      id: 2,
+      movieName: "Movie 2",
+      language: "Spanish",
+      genre: "Drama",
+      location: "Los Angeles",
+      venueName: "Cinema 2",
+      status: "upcoming",
+    },
+  ]);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [showBookingDialog, setShowBookingDialog] = useState(false);
+  const [showTicketDialog, setShowTicketDialog] = useState(false);
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+  const [passwords, setPasswords] = useState({
+    currentPassword: "",
+    newPassword: "",
+  });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          process.env.REACT_APP_BACKEND_URL1 + "/auth/getdetails",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+    fetchUserDetails();
+  }, []);
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = async () => {
+    setIsEditing(false);
+    try {
+      await axios.post(
+        process.env.REACT_APP_BACKEND_URL1 + "/auth/updatedetails",
+        user
+      );
+    } catch (error) {
+      console.error("Error saving user details:", error);
+    }
+  };
+
+  const handleBookingClick = (booking) => {
+    setSelectedBooking(booking);
+    setShowBookingDialog(true);
+  };
+
+  const handleTicketClick = () => {
+    setShowTicketDialog(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    navigate("/");
+  };
+
+  const handlePasswordChange = async () => {
+    console.log(passwords);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        process.env.REACT_APP_BACKEND_URL1 + "/auth/changepassword",
+        passwords,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.status === "success") {
+        console.log(response.data.message);
+        setIsEditing(false);
+      } else {
+        console.error(response.data.message);
+      }
+
+      setShowPasswordDialog(false);
+    } catch (error) {
+      console.error("Error changing password:", error);
+    }
+  };
+
+  const renderPersonalDetails = () => (
+    <Card sx={{ padding: 2, background: "#1f2833", color: "#fff" }}>
+      <Typography variant="h6">Personal Details</Typography>
+      {isEditing ? (
+        <>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Name"
+            value={user.name}
+            onChange={(e) => setUser({ ...user, name: e.target.value })}
+            variant="outlined"
+            sx={{ background: "#fff", borderRadius: 1 }}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Email"
+            value={user.email}
+            onChange={(e) => setUser({ ...user, email: e.target.value })}
+            variant="outlined"
+            sx={{ background: "#fff", borderRadius: 1 }}
+            disabled
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Phone"
+            value={user.phoneNumber}
+            onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+            variant="outlined"
+            sx={{ background: "#fff", borderRadius: 1 }}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Password"
+            type="password"
+            value={"*".repeat(user.password.length)}
+            variant="outlined"
+            sx={{ background: "#fff", borderRadius: 1 }}
+            disabled
+          />
+          <Button
+            onClick={() => setShowPasswordDialog(true)}
+            variant="contained"
+            sx={{
+              marginTop: 2,
+              background: "#820000",
+              "&:hover": { background: "red" },
+            }}
+          >
+            Change Password
+          </Button>
+          <Button
+            onClick={handleSave}
+            variant="contained"
+            startIcon={<Save />}
+            sx={{
+              marginTop: 2,
+              background: "#820000",
+              "&:hover": { background: "red" },
+            }}
+          >
+            Save
+          </Button>
+        </>
+      ) : (
+        <>
+          <Typography>Name: {user.name}</Typography>
+          <Typography>Email: {user.email}</Typography>
+          <Typography>Phone: {user.phoneNumber}</Typography>
+          <Typography>Password: {"*".repeat(user.password.length)}</Typography>
+          <IconButton
+            onClick={handleEditToggle}
+            sx={{ marginTop: 2, color: "#fff" }}
+          >
+            <Edit />
+          </IconButton>
+        </>
+      )}
+    </Card>
+  );
+
+  const renderMyBookings = () => (
+    <Card sx={{ padding: 2, background: "#1f2833", color: "#fff" }}>
+      <Typography variant="h6">My Bookings</Typography>
+      {bookings.map((booking) => (
+        <Card
+          key={booking.id}
+          sx={{ margin: "10px 0", padding: 2, background: "#555" }}
+        >
+          <Typography>Movie: {booking.movieName}</Typography>
+          <Typography>Language: {booking.language}</Typography>
+          <Typography>Genre: {booking.genre}</Typography>
+          <Typography>Location: {booking.location}</Typography>
+          <Typography>Venue: {booking.venueName}</Typography>
+          <Button
+            onClick={() => handleBookingClick(booking)}
+            variant="contained"
+            sx={{ background: "#820000", "&:hover": { background: "red" } }}
+          >
+            {booking.status === "finished" ? "Finished" : "Upcoming"}
+          </Button>
+        </Card>
+      ))}
+      {selectedBooking && (
+        <Dialog
+          open={showBookingDialog}
+          onClose={() => setShowBookingDialog(false)}
+          maxWidth="md"
+          fullWidth
+        >
+          <DialogTitle>Booking Summary</DialogTitle>
+          <DialogContent>
+            <Typography>Movie: {selectedBooking.movieName}</Typography>
+            <Typography>Language: {selectedBooking.language}</Typography>
+            <Typography>Genre: {selectedBooking.genre}</Typography>
+            <Typography>Location: {selectedBooking.location}</Typography>
+            <Typography>Venue: {selectedBooking.venueName}</Typography>
+            <Typography>Status: {selectedBooking.status}</Typography>
+            <Button
+              onClick={handleTicketClick}
+              variant="contained"
+              sx={{ background: "#820000", "&:hover": { background: "red" } }}
+            >
+              Ticket
+            </Button>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setShowBookingDialog(false)} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {showTicketDialog && (
+        <Dialog
+          open={showTicketDialog}
+          onClose={() => setShowTicketDialog(false)}
+          maxWidth="md"
+          fullWidth
+        >
+          <DialogTitle>Ticket</DialogTitle>
+          <DialogContent>
+            <Typography>
+              Generated Ticket for Booking ID: {selectedBooking.id}
+            </Typography>
+            {/* Include the Ticket component content here */}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setShowTicketDialog(false)} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
+    </Card>
+  );
+
+  const renderHelpCenter = () => (
+    <Card sx={{ padding: 2, background: "#1f283", color: "#fff" }}>
+      <Typography variant="h6">Help Center</Typography>
+      <Typography>
+        For any assistance, please contact our support team.
+      </Typography>
+      <Typography>Email: support@example.com</Typography>
+      <Typography>Phone: +123 456 7890</Typography>
+    </Card>
+  );
+
+  return (
+    <div>
+      <Layout />
+      <Container>
+        <Box sx={{ display: "flex", marginTop: 3 }}>
+          <Box sx={{ width: "30%", padding: 2 }}>
+            <Card sx={{ padding: 2, background: "#1f2833", color: "#fff" }}>
+              <Box sx={{ textAlign: "center" }}>
+                <Avatar
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    margin: "auto",
+                    background: "#555",
+                  }}
+                >
+                  <AccountCircle sx={{ fontSize: 50, color: "#fff" }} />
+                </Avatar>
+                <Typography variant="h6" sx={{ marginTop: 2 }}>
+                  {user.name}
+                </Typography>
+                <Typography variant="body2">{user.email}</Typography>
+              </Box>
+              <MenuButton onClick={() => setActiveSection("PersonalDetails")}>
+                Personal Details
+              </MenuButton>
+              <MenuButton onClick={() => setActiveSection("MyBookings")}>
+                My Bookings
+              </MenuButton>
+              <MenuButton onClick={() => setActiveSection("HelpCenter")}>
+                Help Center
+              </MenuButton>
+              <MenuButton onClick={handleLogout}>Log Out</MenuButton>
+            </Card>
+          </Box>
+          <Box sx={{ width: "70%", padding: 2 }}>
+            {activeSection === "PersonalDetails" && renderPersonalDetails()}
+            {activeSection === "MyBookings" && renderMyBookings()}
+            {activeSection === "HelpCenter" && renderHelpCenter()}
+          </Box>
+        </Box>
+      </Container>
+      <Dialog
+        open={showPasswordDialog}
+        onClose={() => setShowPasswordDialog(false)}
+      >
+        <DialogTitle>Change Password</DialogTitle>
+        <DialogContent>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Current Password"
+            type="password"
+            value={passwords.currentPassword}
+            onChange={(e) =>
+              setPasswords({ ...passwords, currentPassword: e.target.value })
+            }
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="New Password"
+            type="password"
+            value={passwords.newPassword}
+            onChange={(e) =>
+              setPasswords({ ...passwords, newPassword: e.target.value })
+            }
+            variant="outlined"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handlePasswordChange} color="primary">
+            Save
+          </Button>
+          <Button
+            onClick={() => setShowPasswordDialog(false)}
+            color="secondary"
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+};
+export default Profile;

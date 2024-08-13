@@ -1,0 +1,109 @@
+.confirmation-page {
+  display: flex;
+  align-items: flex-start;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+ 
+.confirmation-message {
+  margin-right: 20px;
+  margin-left: 100px;
+  max-width: 700px;
+}
+ 
+.poster-image {
+  width: 200px;
+  height: 180px;
+  border-radius: 10px;
+}
+ 
+.ticket {
+  width: 300px;
+  border: 1px solid rgb(177, 1, 1);
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin-left: 50px;
+  margin-top: 20px
+}
+ 
+.ticket-header {
+  text-align: center;
+  background-color: rgb(177, 1, 1);
+  color: black;
+  padding: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+ 
+.ticket-poster {
+  text-align: center;
+  padding: 16px;
+}
+ 
+.poster-placeholder {
+  background-color: #ddd;
+  padding: 40px;
+  border-radius: 4px;
+}
+ 
+.ticket-details {
+  padding: 16px;
+}
+ 
+.movie-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+ 
+.movie-info {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+ 
+.date-time,
+.venue-seats {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.ticket-qr {
+  text-align: center;
+}
+ 
+.qr-code-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  margin: 0 auto 8px;
+}
+ 
+.booking-code {
+  font-size: 12px;
+  color: #666;
+}
+ 
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(177, 1, 1);
+  color: black;
+  padding: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+ 
+.brand {
+  font-size: 16px;
+}
+ 
+.ticket-type {
+  font-size: 12px;
+}
